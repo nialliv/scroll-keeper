@@ -8,6 +8,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.commons:commons-lang3:3.19.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")
 }
 

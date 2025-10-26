@@ -12,4 +12,3 @@ plugins {
 }
 
 rootProject.name = "scroll-keeper"
-include("app")

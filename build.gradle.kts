@@ -11,6 +11,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")
 }
 
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "ru.artemev.Main"
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
 }
@@ -22,5 +28,5 @@ java {
 }
 
 application {
-    mainClass = "ru.artemev.bootstrap.Main"
+    mainClass = "ru.artemev.Main"
 }

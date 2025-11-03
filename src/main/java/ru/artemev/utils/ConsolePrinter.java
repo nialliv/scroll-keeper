@@ -1,6 +1,9 @@
 package ru.artemev.utils;
 
 import org.apache.commons.lang3.Strings;
+import ru.artemev.dto.ServiceDescription;
+import ru.artemev.services.Service;
+import ru.artemev.services.impl.ShadowSlaveService;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -38,4 +41,11 @@ public class ConsolePrinter {
         System.out.printf("Дядя, у нас какая-то хрень случилась... Error - %s\n", e.getMessage());
     }
 
+    public void getInfoByService(Service clazz) {
+        System.out.println(ServiceDescription.getDescriptionByService());
+    }
+
+    public void printAvailableDownloaders(Service se) {
+
+    }
 }

@@ -2,9 +2,9 @@ package ru.artemev.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import ru.artemev.services.Service;
-import ru.artemev.services.impl.LotmService;
-import ru.artemev.services.impl.ShadowSlaveService;
+import ru.artemev.services.TitleService;
+import ru.artemev.services.impl.LotmTitleService;
+import ru.artemev.services.impl.ShadowSlaveTitleService;
 
 import java.util.function.Supplier;
 
@@ -12,10 +12,10 @@ import java.util.function.Supplier;
 @Getter
 public enum ServiceContainer {
 
-    SHADOW_SLAVE_DOWNLOADER("Shadow slave", ShadowSlaveService::new),
-    LORD_OF_THE_MYSTERIES("Lord of the mysteries", LotmService::new),
+    SHADOW_SLAVE_DOWNLOADER("Shadow slave", ShadowSlaveTitleService::new),
+    LORD_OF_THE_MYSTERIES("Lord of the mysteries", LotmTitleService::new),
     ;
 
     private final String descriptionService;
-    private final Supplier<Service> service;
+    private final Supplier<TitleService> service;
 }

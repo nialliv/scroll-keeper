@@ -1,6 +1,6 @@
 package ru.artemev.services;
 
-public interface Service {
+public interface TitleService {
 
     void handle();
 

@@ -1,12 +1,13 @@
 package ru.artemev;
 
 import ru.artemev.dto.ServiceContainer;
-import ru.artemev.services.Service;
-import ru.artemev.utils.ConsolePrinter;
+import ru.artemev.services.PrinterService;
+import ru.artemev.services.TitleService;
+import ru.artemev.services.impl.PrinterServiceImpl;
 
 public class Main {
 
-    private static final ConsolePrinter printer =  new ConsolePrinter();
+    private static final PrinterService printer =  new PrinterServiceImpl();
 
     public static void main(String[] args) {
         printer.printBannerAndGreetings();
@@ -19,7 +20,7 @@ public class Main {
 
     }
 
-    private static Service getService() {
+    private static TitleService getService() {
         try {
             int indexService = Integer.parseInt(printer.wrapperInput());
 

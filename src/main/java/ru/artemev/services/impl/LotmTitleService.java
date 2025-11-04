@@ -1,8 +1,8 @@
 package ru.artemev.services.impl;
 
-import ru.artemev.services.Service;
+import ru.artemev.services.TitleService;
 
-public class LotmService implements Service {
+public class LotmTitleService implements TitleService {
 
     @Override
     public void handle() {

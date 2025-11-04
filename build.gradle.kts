@@ -11,6 +11,7 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.19.0")
     implementation("com.google.code.gson:gson:2.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")
+    testImplementation("org.mockito:mockito-core:5.20.0")
 }
 
 tasks.jar {

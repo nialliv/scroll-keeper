@@ -1,11 +1,9 @@
 package ru.artemev.dto;
 
-import lombok.Data;
+public record Content(
 
-@Data
-public class Content {
+        int chapterNum,
 
-    private int chapterNum;
-
-    private String url;
+        String url
+) {
 }

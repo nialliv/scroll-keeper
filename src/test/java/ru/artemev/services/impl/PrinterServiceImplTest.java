@@ -3,7 +3,7 @@ package ru.artemev.services.impl;
 import org.junit.jupiter.api.Test;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.services.PrinterService;
-import ru.artemev.services.downloaders.Downloader;
+import ru.artemev.services.downloaders.Source;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ class PrinterServiceImplTest {
 
     private final PrinterService printerService = new PrinterServiceImpl();
 
-    void printAvailableDownloaderInfo() {
+    void printAvailableSourceInfo() {
         String expected = """
                 Доступные загрузчики:
                     1 - Качаемся
@@ -24,11 +24,11 @@ class PrinterServiceImplTest {
                     4 - Качаемся
                     5 - Качаемся
                 """;
-        List<Downloader> downloaders = Stream.generate(() -> mock(Downloader.class))
+        List<Source> downloaders = Stream.generate(() -> mock(Source.class))
                 .limit(5)
                 .peek(downloader -> when(downloader.getInfo()).thenReturn("Качаемся"))
                 .toList();
-        printerService.printAvailableDownloaderInfo(downloaders);
+        printerService.printAvailableSourceInfo(downloaders);
     }
 
     @Test

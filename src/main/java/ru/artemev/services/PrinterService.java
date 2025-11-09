@@ -3,7 +3,7 @@ package ru.artemev.services;
 import ru.artemev.dto.ContentRange;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.PrintedDirectoriesContainer;
-import ru.artemev.services.downloaders.Downloader;
+import ru.artemev.services.downloaders.Source;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -20,7 +20,7 @@ public interface PrinterService {
 
     void println(String message);
 
-    void printAvailableDownloaderInfo(List<Downloader> downloaders);
+    void printAvailableSourceInfo(List<Source> sources);
 
     Path askPathTo(PrintedDirectoriesContainer printedDirectoriesContainer);
 

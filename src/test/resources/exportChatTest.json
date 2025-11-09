@@ -1,0 +1,534 @@
+{
+  "name": "Теневой Раб | Онгоинг",
+  "type": "public_channel",
+  "id": 1536127710,
+  "messages": [
+    {
+      "id": 1,
+      "type": "service",
+      "date": "2023-06-23T15:18:21",
+      "date_unixtime": "1687519101",
+      "actor": "Теневой Раб | Онгоинг",
+      "actor_id": "channel1536127710",
+      "action": "create_channel",
+      "title": "Теневой Раб|Обсуждение онгоинга",
+      "text": "",
+      "text_entities": []
+    },
+    {
+      "id": 2,
+      "type": "service",
+      "date": "2023-06-23T15:18:27",
+      "date_unixtime": "1687519107",
+      "actor": "Теневой Раб | Онгоинг",
+      "actor_id": "channel1536127710",
+      "action": "edit_group_photo",
+      "photo": "photos/photo_1@23-06-2023_15-18-27.jpg",
+      "photo_file_size": 67392,
+      "width": 640,
+      "height": 640,
+      "text": "",
+      "text_entities": []
+    },
+    {
+      "id": 3,
+      "type": "service",
+      "date": "2023-06-23T15:22:39",
+      "date_unixtime": "1687519359",
+      "actor": "Теневой Раб | Онгоинг",
+      "actor_id": "channel1536127710",
+      "action": "edit_group_title",
+      "title": "Теневой Раб|Онгоинг",
+      "text": "",
+      "text_entities": []
+    },
+    {
+      "id": 4,
+      "type": "message",
+      "date": "2023-06-23T15:37:06",
+      "date_unixtime": "1687520226",
+      "edited": "2023-07-27T10:08:57",
+      "edited_unixtime": "1690438137",
+      "from": "Теневой Раб | Онгоинг",
+      "from_id": "channel1536127710",
+      "author": "AtLas",
+      "text": [
+        "Здесь нет глав до 989. Вы можете найти их либо на рулейте у другого переводчика, либо на различных сайтах на английском языке.\n\nСсылОчка, чтобы попасть в чат:\n",
+        {
+          "type": "link",
+          "text": "https://t.me/shad0wslave_chat"
+        },
+        "\n\nСсылка на бусти:\n",
+        {
+          "type": "link",
+          "text": "https://boosty.to/shadow_slave"
+        },
+        "\n\nДушные ссылки:\nПеревод на Ranobelib - ",
+        {
+          "type": "link",
+          "text": "https://ranobelib.me/shadow-slave?bid=13947&section=chapters"
+        },
+        "\nПеревод на Ranobehub - ",
+        {
+          "type": "link",
+          "text": "https://ranobehub.org/ranobe/1298-shadow-slave"
+        },
+        "\n\nПолезные ссылки:\nАнглийская вики - ",
+        {
+          "type": "link",
+          "text": "https://shadowslave.fandom.com/wiki/Shadow_Slave_Wiki"
+        },
+        "\nОфициальный дискорд - ",
+        {
+          "type": "link",
+          "text": "https://discord.gg/guiltythree"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Здесь нет глав до 989. Вы можете найти их либо на рулейте у другого переводчика, либо на различных сайтах на английском языке.\n\nСсылОчка, чтобы попасть в чат:\n"
+        },
+        {
+          "type": "link",
+          "text": "https://t.me/shad0wslave_chat"
+        },
+        {
+          "type": "plain",
+          "text": "\n\nСсылка на бусти:\n"
+        },
+        {
+          "type": "link",
+          "text": "https://boosty.to/shadow_slave"
+        },
+        {
+          "type": "plain",
+          "text": "\n\nДушные ссылки:\nПеревод на Ranobelib - "
+        },
+        {
+          "type": "link",
+          "text": "https://ranobelib.me/shadow-slave?bid=13947&section=chapters"
+        },
+        {
+          "type": "plain",
+          "text": "\nПеревод на Ranobehub - "
+        },
+        {
+          "type": "link",
+          "text": "https://ranobehub.org/ranobe/1298-shadow-slave"
+        },
+        {
+          "type": "plain",
+          "text": "\n\nПолезные ссылки:\nАнглийская вики - "
+        },
+        {
+          "type": "link",
+          "text": "https://shadowslave.fandom.com/wiki/Shadow_Slave_Wiki"
+        },
+        {
+          "type": "plain",
+          "text": "\nОфициальный дискорд - "
+        },
+        {
+          "type": "link",
+          "text": "https://discord.gg/guiltythree"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 21,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "💊"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🤝"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🗿"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😁"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🏆"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤‍🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 498,
+      "type": "message",
+      "date": "2024-02-16T21:56:01",
+      "date_unixtime": "1708106161",
+      "edited": "2024-02-16T21:56:23",
+      "edited_unixtime": "1708106183",
+      "from": "Теневой Раб | Онгоинг",
+      "from_id": "channel1536127710",
+      "author": "AtLas",
+      "text": [
+        "Теневой Раб, ",
+        {
+          "type": "text_link",
+          "text": "Глава 1442",
+          "href": "https://telegra.ph/Glava-1442-Neulovimyj-dueht-02-16"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Теневой Раб, "
+        },
+        {
+          "type": "text_link",
+          "text": "Глава 1442",
+          "href": "https://telegra.ph/Glava-1442-Neulovimyj-dueht-02-16"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 344,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 84,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 24,
+          "emoji": "💊"
+        },
+        {
+          "type": "emoji",
+          "count": 18,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 17,
+          "emoji": "👀"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "❤‍🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "🐳"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "👻"
+        }
+      ]
+    },
+    {
+      "id": 499,
+      "type": "message",
+      "date": "2024-02-17T21:07:32",
+      "date_unixtime": "1708189652",
+      "edited": "2024-02-17T21:07:43",
+      "edited_unixtime": "1708189663",
+      "from": "Теневой Раб | Онгоинг",
+      "from_id": "channel1536127710",
+      "author": "AtLas",
+      "text": [
+        "Теневой Раб, ",
+        {
+          "type": "text_link",
+          "text": "Глава 1443",
+          "href": "https://telegra.ph/Glava-1443-Razrubaya-goru-02-17"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Теневой Раб, "
+        },
+        {
+          "type": "text_link",
+          "text": "Глава 1443",
+          "href": "https://telegra.ph/Glava-1443-Razrubaya-goru-02-17"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 366,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 46,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 41,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 19,
+          "emoji": "💊"
+        },
+        {
+          "type": "emoji",
+          "count": 7,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "🐳"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "👨‍💻"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🍓"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "❤‍🔥"
+        }
+      ]
+    },
+    {
+      "id": 500,
+      "type": "message",
+      "date": "2024-02-17T21:08:47",
+      "date_unixtime": "1708189727",
+      "edited": "2024-02-17T21:09:22",
+      "edited_unixtime": "1708189762",
+      "from": "Теневой Раб | Онгоинг",
+      "from_id": "channel1536127710",
+      "author": "AtLas",
+      "text": [
+        "Теневой Раб, ",
+        {
+          "type": "text_link",
+          "text": "Глава 1444",
+          "href": "https://telegra.ph/Glava-1444-Novye-sposoby-umeret-02-17"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Теневой Раб, "
+        },
+        {
+          "type": "text_link",
+          "text": "Глава 1444",
+          "href": "https://telegra.ph/Glava-1444-Novye-sposoby-umeret-02-17"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 370,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 52,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 39,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 22,
+          "emoji": "💊"
+        },
+        {
+          "type": "emoji",
+          "count": 9,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "❤‍🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "🐳"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🍓"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👌"
+        }
+      ]
+    },
+    {
+      "id": 501,
+      "type": "message",
+      "date": "2024-02-19T00:19:49",
+      "date_unixtime": "1708287589",
+      "edited": "2024-02-19T00:19:59",
+      "edited_unixtime": "1708287599",
+      "from": "Теневой Раб | Онгоинг",
+      "from_id": "channel1536127710",
+      "author": "AtLas",
+      "text": [
+        "Теневой Раб, ",
+        {
+          "type": "text_link",
+          "text": "Глава 1445",
+          "href": "https://telegra.ph/Glava-1445-Vnutri-bashni-02-18"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Теневой Раб, "
+        },
+        {
+          "type": "text_link",
+          "text": "Глава 1445",
+          "href": "https://telegra.ph/Glava-1445-Vnutri-bashni-02-18"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 346,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 73,
+          "emoji": "🗿"
+        },
+        {
+          "type": "emoji",
+          "count": 32,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 18,
+          "emoji": "💊"
+        },
+        {
+          "type": "emoji",
+          "count": 13,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 8,
+          "emoji": "❤‍🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "🐳"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🍓"
+        }
+      ]
+    }
+  ]
+}

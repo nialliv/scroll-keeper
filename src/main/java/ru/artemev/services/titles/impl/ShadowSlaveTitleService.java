@@ -1,15 +1,19 @@
-package ru.artemev.services.impl;
+package ru.artemev.services.titles.impl;
 
-import ru.artemev.dto.Content;
-import ru.artemev.dto.ContentRange;
+import ru.artemev.dto.ChapterRange;
+import ru.artemev.dto.ContentLink;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.PrintedDirectoriesContainer;
 import ru.artemev.services.PrinterService;
-import ru.artemev.services.TitleService;
-import ru.artemev.services.downloaders.Source;
-import ru.artemev.services.downloaders.impl.Downloader;
+import ru.artemev.services.Saver;
+import ru.artemev.services.downloaders.Downloader;
 import ru.artemev.services.downloaders.impl.HttpDownloader;
-import ru.artemev.services.downloaders.impl.TelegraphSource;
+import ru.artemev.services.impl.DocSaver;
+import ru.artemev.services.impl.PrinterServiceImpl;
+import ru.artemev.services.resolvers.ParserResolver;
+import ru.artemev.services.sources.Source;
+import ru.artemev.services.sources.impl.TelegraphSource;
+import ru.artemev.services.titles.TitleService;
 import ru.artemev.utils.FileHelper;
 
 import java.nio.file.Path;
@@ -23,6 +27,7 @@ public class ShadowSlaveTitleService implements TitleService {
 
     private final PrinterService printer = new PrinterServiceImpl();
     private final Downloader downloader = new HttpDownloader();
+    private final Saver saver = new DocSaver();
 
     @Override
     public void handle() {
@@ -30,49 +35,44 @@ public class ShadowSlaveTitleService implements TitleService {
         printer.printAvailableSourceInfo(SOURCE_LIST);
 
         final Source source = getSource();
-        //todo
-        // сколько глав
-        // получить доступный диапазон ОТСОРТИРОВАННЫЙ!
 
+        // todo fix logic, if source - not telegraph this not needed
+        // mb create new handler ....
         Path pathToExportChat = printer.askPathTo(PrintedDirectoriesContainer.TELEGRAM_EXPORT_CHAT);
-        List<Content> contents = source.getAvailableContent(pathToExportChat);
-        // запринтить доступный диапазон контента
-        ContentRange contentRange = getTheValueBy(contents);
-        printer.printContentRange(contentRange);
-        // спросить какой диапазон скачать
-        ContentRange desiredRange = printer.askDesiredContentRange();
-        // спросить куда сохранять
+        List<ContentLink> contentLinks = source.getAvailableContent(pathToExportChat);
+        // UDPDATE - no, no, no, create simple switch we need download content and that's it
+
+        ChapterRange chapterRange = getTheValueBy(contentLinks);
+        printer.printContentRange(chapterRange);
+        ChapterRange desiredRange = printer.askDesiredContentRange();
+
         Path pathToSaveContent = printer.askPathTo(PrintedDirectoriesContainer.FOLDER_FOR_SAVED_CONTENT);
+
         List<ErrorContent> errors = new ArrayList<>();
-        contents.stream()
-                .skip(desiredRange.min())
-                .limit(desiredRange.max())
+        contentLinks.stream()
+                .filter(contentLink -> desiredRange.min() <= contentLink.chapterNum() && contentLink.chapterNum() <= desiredRange.max())
                 .parallel()
                 .map(content -> downloader.download(content, errors))
-                //   парсить
-//                .map(content -> parser.parseRanobe(content, errors))
-                //   сохранять
-                .forEach(ranobeChapter -> {
-//                    saver.saveRanobeByPath(ranobeChapter, pathToSaveContent, errors);
-//                    printer.println(String.format("End for process chapter %s", ranobeChapter.chapterNum()));
+                .map(content -> ParserResolver.getParserBySource(source).parse(content, errors))
+                .forEach(ranobeTitle -> {
+                    saver.saveRanobeToPath(ranobeTitle, pathToSaveContent, errors);
+                    printer.println(String.format("End for process title - %s", ranobeTitle.title()));
                 });
 
         if (!errors.isEmpty()) {
             printer.printErrors(errors);
-//            if (printer.askSaveErrorInFile()) {
             FileHelper.saveErrors(pathToSaveContent, errors);
-//            }
         }
-//        printer.sayFinish();
+        printer.sayFinish();
     }
 
-    private ContentRange getTheValueBy(List<Content> contents) {
-        List<Integer> chapterNums = contents.stream()
-                .map(Content::chapterNum)
+    private ChapterRange getTheValueBy(List<ContentLink> contentLinks) {
+        List<Integer> chapterNums = contentLinks.stream()
+                .map(ContentLink::chapterNum)
                 .toList();
         Integer min = Collections.min(chapterNums);
         Integer max = Collections.max(chapterNums);
-        return new ContentRange(min, max);
+        return new ChapterRange(min, max);
     }
 
     private Source getSource() {
@@ -80,7 +80,7 @@ public class ShadowSlaveTitleService implements TitleService {
         try {
             String input = printer.wrapperInput();
             int sourceIndex = Integer.parseInt(input);
-            return SOURCE_LIST.get(sourceIndex);
+            return SOURCE_LIST.get(sourceIndex - 1);
         } catch (Exception e) {
             // todo create recurse if user wanted
             throw new RuntimeException(e);

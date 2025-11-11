@@ -1,16 +1,15 @@
 package ru.artemev.services.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
-import ru.artemev.dto.ContentRange;
+import ru.artemev.dto.ChapterRange;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.PrintedDirectoriesContainer;
 import ru.artemev.services.PrinterService;
-import ru.artemev.services.downloaders.Source;
+import ru.artemev.services.sources.Source;
 import ru.artemev.utils.FileHelper;
 import ru.artemev.utils.RegexUtils;
 
-import java.nio.file.Files;
-import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
@@ -76,14 +75,12 @@ public class PrinterServiceImpl implements PrinterService {
     public Path askPathTo(PrintedDirectoriesContainer printedDirectoriesContainer) {
         System.out.printf("Скинь путь до %s\n", printedDirectoriesContainer.getUserInfo());
         try {
-            Path path = Path.of(wrapperInput());
-            if(Files.notExists(path)) {
-                System.out.println("Такой папки не было, а я возьми, да создай =)");
-                Files.createDirectories(path);
+            String input = wrapperInput();
+            if(StringUtils.isBlank(input)) {
+                throw new RuntimeException("Input is blank");
             }
-            if (!Files.isDirectory(path)) {
-                throw new NotDirectoryException(path.toString());
-            }
+            Path path = Path.of(input);
+            FileHelper.helpIfThisFolder(printedDirectoriesContainer, path);
             return path;
         } catch (Exception e) {
             error(e);
@@ -95,17 +92,17 @@ public class PrinterServiceImpl implements PrinterService {
     }
 
     @Override
-    public void printContentRange(ContentRange contentRange) {
-        System.out.printf("Итак, нам доступен диапазон глав - %s\n", contentRange);
+    public void printContentRange(ChapterRange chapterRange) {
+        System.out.printf("Итак, нам доступен диапазон глав - %s\n", chapterRange);
     }
 
     @Override
-    public ContentRange askDesiredContentRange() {
+    public ChapterRange askDesiredContentRange() {
         System.out.println("Укажи диапазон глав включительно, который будем качать");
         String input = wrapperInput();
         List<Integer> foundDigits = RegexUtils.findDigits(input);
         if (isValidRange(foundDigits)) {
-            return new ContentRange(foundDigits.getFirst(), foundDigits.getLast());
+            return new ChapterRange(foundDigits.getFirst(), foundDigits.getLast());
         }
         if (wrongAnswerGetAnother()) {
             return askDesiredContentRange();
@@ -116,6 +113,11 @@ public class PrinterServiceImpl implements PrinterService {
     @Override
     public void printErrors(List<ErrorContent> errors) {
         errors.forEach(System.out::println);
+    }
+
+    @Override
+    public void sayFinish() {
+        System.out.println("Итак мы закончили =)");
     }
 
     private static boolean isValidRange(List<Integer> foundDigits) {

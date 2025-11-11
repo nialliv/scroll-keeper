@@ -2,9 +2,9 @@ package ru.artemev.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import ru.artemev.services.TitleService;
-import ru.artemev.services.impl.LotmTitleService;
-import ru.artemev.services.impl.ShadowSlaveTitleService;
+import ru.artemev.services.titles.TitleService;
+import ru.artemev.services.titles.impl.LotmTitleService;
+import ru.artemev.services.titles.impl.ShadowSlaveTitleService;
 
 import java.util.function.Supplier;
 

@@ -3,7 +3,7 @@ package ru.artemev.services.impl;
 import org.junit.jupiter.api.Test;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.services.PrinterService;
-import ru.artemev.services.downloaders.Source;
+import ru.artemev.services.sources.Source;
 
 import java.util.List;
 import java.util.stream.Stream;

@@ -1,6 +1,6 @@
 package ru.artemev.dto;
 
-public record Content(
+public record ContentLink(
 
         int chapterNum,
 

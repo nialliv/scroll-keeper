@@ -1,6 +1,6 @@
 package ru.artemev.dto;
 
-public record ContentRange(
+public record ChapterRange(
         Integer min,
         Integer max
 ) {

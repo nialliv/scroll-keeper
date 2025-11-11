@@ -1,4 +1,4 @@
-package ru.artemev.services;
+package ru.artemev.services.titles;
 
 public interface TitleService {
 

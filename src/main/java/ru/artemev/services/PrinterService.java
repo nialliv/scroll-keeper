@@ -1,9 +1,9 @@
 package ru.artemev.services;
 
-import ru.artemev.dto.ContentRange;
+import ru.artemev.dto.ChapterRange;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.PrintedDirectoriesContainer;
-import ru.artemev.services.downloaders.Source;
+import ru.artemev.services.sources.Source;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -24,9 +24,11 @@ public interface PrinterService {
 
     Path askPathTo(PrintedDirectoriesContainer printedDirectoriesContainer);
 
-    void printContentRange(ContentRange contentRange);
+    void printContentRange(ChapterRange chapterRange);
 
-    ContentRange askDesiredContentRange();
+    ChapterRange askDesiredContentRange();
 
     void printErrors(List<ErrorContent> errors);
+
+    void sayFinish();
 }

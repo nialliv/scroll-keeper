@@ -1,11 +1,11 @@
-package ru.artemev.services.downloaders.impl;
+package ru.artemev.services.sources.impl;
 
 import org.apache.commons.lang3.Strings;
-import ru.artemev.dto.Content;
+import ru.artemev.dto.ContentLink;
 import ru.artemev.dto.json.ExportChat;
 import ru.artemev.dto.json.Message;
 import ru.artemev.dto.json.TextEntity;
-import ru.artemev.services.downloaders.Source;
+import ru.artemev.services.sources.Source;
 import ru.artemev.utils.FileHelper;
 import ru.artemev.utils.RegexUtils;
 
@@ -23,7 +23,7 @@ public class TelegraphSource implements Source {
     }
 
     @Override
-    public List<Content> getAvailableContent(Path pathToExportChat) {
+    public List<ContentLink> getAvailableContent(Path pathToExportChat) {
         ExportChat json = FileHelper.getJsonFromFile(pathToExportChat);
         // for each
         if (json == null) {
@@ -33,9 +33,9 @@ public class TelegraphSource implements Source {
         return messages.stream()
                 .flatMap(message -> message.getTextEntities().stream())
                 .filter(TelegraphSource::filterTextEntity)
-                // get title and url to download
+                // get title and body to download
                 .map(TelegraphSource::mapToContent)
-                .sorted(Comparator.comparingInt(Content::chapterNum))
+                .sorted(Comparator.comparingInt(ContentLink::chapterNum))
                 .toList();
     }
 
@@ -43,11 +43,11 @@ public class TelegraphSource implements Source {
         return textEntity != null && TEXT_LINK_FIELD.equals(textEntity.getType()) && Strings.CI.contains(textEntity.getText(), "глава");
     }
 
-    private static Content mapToContent(TextEntity textEntity) {
+    private static ContentLink mapToContent(TextEntity textEntity) {
         List<Integer> chapterNum = RegexUtils.findDigits(textEntity.getText());
         if (chapterNum.size() != 1) {
             throw new RuntimeException("Error find chapter number");
         }
-        return new Content(chapterNum.getFirst(), textEntity.getText());
+        return new ContentLink(chapterNum.getFirst(), textEntity.getHref());
     }
 }

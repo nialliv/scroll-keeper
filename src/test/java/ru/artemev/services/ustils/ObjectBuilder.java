@@ -21,6 +21,10 @@ public class ObjectBuilder {
         return Path.of(Objects.requireNonNull(resource).getPath());
     }
 
+    public static <T> T buildJson(String json, Class<T> clazz) {
+        return GSON.fromJson(json, clazz);
+    }
+
     @SneakyThrows
     public static <T> List<T> buildJsonList(String filePath) {
         try (Reader reader = new InputStreamReader(Objects.requireNonNull(CLASS_LOADER.getResourceAsStream(filePath)))) {

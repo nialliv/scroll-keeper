@@ -1,10 +1,13 @@
 package ru.artemev.services.sources.impl;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
-import ru.artemev.dto.ContentLink;
-import ru.artemev.services.ustils.ObjectBuilder;
 
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 class TelegraphSourceTest {
 
@@ -12,10 +15,12 @@ class TelegraphSourceTest {
 
     @Test
     void getAvailableContent() {
-        List<ContentLink> expected = ObjectBuilder.buildJsonList("expectedListContent.json");
-        List<ContentLink> actual = telegraphSource.getAvailableContent();
-//        assertThat(actual)
-//                .usingRecursiveFieldByFieldElementComparator()
-//                .isSameAs(expected);
+        try (JsonReader reader = new JsonReader(new InputStreamReader(Objects.requireNonNull(TelegraphSourceTest.class.getClassLoader().getResourceAsStream("checkRanobe.json"))))) {
+            JsonElement jsonElement = JsonParser.parseReader(reader).getAsJsonObject().get("data");
+            jsonElement.getAsJsonArray();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

@@ -1,8 +1,10 @@
 package ru.artemev.services.resolvers;
 
 import ru.artemev.services.parsers.Parser;
+import ru.artemev.services.parsers.RanobeLibParser;
 import ru.artemev.services.parsers.impl.TelegraphParser;
 import ru.artemev.services.sources.Source;
+import ru.artemev.services.sources.impl.RanobeApi;
 import ru.artemev.services.sources.impl.TelegraphSource;
 
 import java.util.HashMap;
@@ -16,6 +18,7 @@ public class ParserResolver {
 
     static {
         PARSERS.put(TelegraphSource.class.getSimpleName(), new TelegraphParser());
+        PARSERS.put(RanobeApi.class.getSimpleName(), new RanobeLibParser());
     }
 
     public static Parser getParserBySource(Source source) {

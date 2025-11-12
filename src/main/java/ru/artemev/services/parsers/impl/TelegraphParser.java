@@ -14,7 +14,7 @@ import ru.artemev.services.parsers.Parser;
 import java.util.List;
 
 //todo mb should rename to telegraph, not html
-public class HtmlParser implements Parser {
+public class TelegraphParser implements Parser {
 
     public static final String ARTICLE_TAG = "article";
     public static final String H1_TAG = "h1";

@@ -1,7 +1,7 @@
 package ru.artemev.services.resolvers;
 
 import ru.artemev.services.parsers.Parser;
-import ru.artemev.services.parsers.impl.HtmlParser;
+import ru.artemev.services.parsers.impl.TelegraphParser;
 import ru.artemev.services.sources.Source;
 import ru.artemev.services.sources.impl.TelegraphSource;
 
@@ -15,7 +15,7 @@ public class ParserResolver {
     private static final Map<String, Parser> PARSERS = new HashMap<>();
 
     static {
-        PARSERS.put(TelegraphSource.class.getSimpleName(), new HtmlParser());
+        PARSERS.put(TelegraphSource.class.getSimpleName(), new TelegraphParser());
     }
 
     public static Parser getParserBySource(Source source) {

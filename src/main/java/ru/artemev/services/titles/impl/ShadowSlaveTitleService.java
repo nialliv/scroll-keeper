@@ -1,6 +1,5 @@
 package ru.artemev.services.titles.impl;
 
-import ru.artemev.dto.ChapterRange;
 import ru.artemev.dto.ContentLink;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.PrintedDirectoriesContainer;
@@ -18,7 +17,6 @@ import ru.artemev.utils.FileHelper;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ShadowSlaveTitleService implements TitleService {
@@ -36,21 +34,12 @@ public class ShadowSlaveTitleService implements TitleService {
 
         final Source source = getSource();
 
-        // todo fix logic, if source - not telegraph this not needed
-        // mb create new handler ....
-        Path pathToExportChat = printer.askPathTo(PrintedDirectoriesContainer.TELEGRAM_EXPORT_CHAT);
-        List<ContentLink> contentLinks = source.getAvailableContent(pathToExportChat);
-        // UDPDATE - no, no, no, create simple switch we need download content and that's it
-
-        ChapterRange chapterRange = getTheValueBy(contentLinks);
-        printer.printContentRange(chapterRange);
-        ChapterRange desiredRange = printer.askDesiredContentRange();
+        List<ContentLink> contentLinks = source.getAvailableContent();
 
         Path pathToSaveContent = printer.askPathTo(PrintedDirectoriesContainer.FOLDER_FOR_SAVED_CONTENT);
 
         List<ErrorContent> errors = new ArrayList<>();
         contentLinks.stream()
-                .filter(contentLink -> desiredRange.min() <= contentLink.chapterNum() && contentLink.chapterNum() <= desiredRange.max())
                 .parallel()
                 .map(content -> downloader.download(content, errors))
                 .map(content -> ParserResolver.getParserBySource(source).parse(content, errors))
@@ -66,14 +55,6 @@ public class ShadowSlaveTitleService implements TitleService {
         printer.sayFinish();
     }
 
-    private ChapterRange getTheValueBy(List<ContentLink> contentLinks) {
-        List<Integer> chapterNums = contentLinks.stream()
-                .map(ContentLink::chapterNum)
-                .toList();
-        Integer min = Collections.min(chapterNums);
-        Integer max = Collections.max(chapterNums);
-        return new ChapterRange(min, max);
-    }
 
     private Source getSource() {
         // todo goto util class wrapper or ResolverClass

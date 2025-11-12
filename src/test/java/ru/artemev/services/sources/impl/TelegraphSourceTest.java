@@ -13,7 +13,7 @@ class TelegraphSourceTest {
     @Test
     void getAvailableContent() {
         List<ContentLink> expected = ObjectBuilder.buildJsonList("expectedListContent.json");
-        List<ContentLink> actual = telegraphSource.getAvailableContent(ObjectBuilder.getPathFromTestResources("exportChatTest.json"));
+        List<ContentLink> actual = telegraphSource.getAvailableContent();
 //        assertThat(actual)
 //                .usingRecursiveFieldByFieldElementComparator()
 //                .isSameAs(expected);

@@ -20,17 +20,18 @@ public class DocSaver implements Saver {
 
     @Override
     public void saveRanobeToPath(RanobeTitle ranobeChapter, Path pathToSaveContent, List<ErrorContent> errors) {
+        String title = ranobeChapter.title();
         try (XWPFDocument document = new XWPFDocument()) {
-            createParagraph(document, ranobeChapter.title(), 18, true, ParagraphAlignment.CENTER);
+            createParagraph(document, title, 18, true, ParagraphAlignment.CENTER);
             ranobeChapter.lines()
                     .forEach(line -> createParagraph(document, line, 12, false, ParagraphAlignment.LEFT));
 
-            String fileName = ranobeChapter.title() + ".docx";
+            String fileName = title.substring(0, Math.min(title.length(), 80)) + ".docx";
             File documentFile = pathToSaveContent.resolve(fileName).toFile();
             document.write(new FileOutputStream(documentFile));
         } catch (Exception ex) {
             printerService.error(ex);
-            errors.add(new ErrorContent(Integer.parseInt(ranobeChapter.title()), ex));
+            errors.add(new ErrorContent(Integer.parseInt(title), ex));
         }
     }
 

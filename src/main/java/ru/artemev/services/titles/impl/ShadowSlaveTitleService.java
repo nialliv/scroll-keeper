@@ -21,6 +21,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+
+import static java.lang.Thread.sleep;
 
 public class ShadowSlaveTitleService implements TitleService {
 
@@ -43,9 +46,17 @@ public class ShadowSlaveTitleService implements TitleService {
 
         List<ErrorContent> errors = new ArrayList<>();
         contentLinks.stream()
-                .parallel()
                 .map(content -> downloader.download(content, errors))
+                .filter(Objects::nonNull)
+                .peek(content -> {
+                    try {
+                        sleep(4000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .map(content -> ParserResolver.getParserBySource(source).parse(content, errors))
+                .filter(Objects::nonNull)
                 .forEach(ranobeTitle -> {
                     saver.saveRanobeToPath(ranobeTitle, pathToSaveContent, errors);
                     printerService.println(String.format("End for process title - %s", ranobeTitle.title()));

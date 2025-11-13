@@ -9,6 +9,8 @@ import org.jsoup.nodes.Element;
 import ru.artemev.dto.DownloadedContent;
 import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.RanobeTitle;
+import ru.artemev.services.PrinterService;
+import ru.artemev.services.impl.PrinterServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,23 +30,31 @@ public class RanobeLibParser implements Parser {
     private static final String TITLE_TEMPLATE = "Глава %s: %s";
     private static final String P_TAG = "p";
 
+    private final PrinterService printerService = new PrinterServiceImpl();
+
     @Override
     public RanobeTitle parse(DownloadedContent downloadedContent, List<ErrorContent> errors) {
-        JsonObject root = JsonParser.parseString(downloadedContent.body()).getAsJsonObject();
-        JsonObject data = root.get(DATA_FIELD).getAsJsonObject();
+        try {
+            JsonObject root = JsonParser.parseString(downloadedContent.body()).getAsJsonObject();
+            JsonObject data = root.get(DATA_FIELD).getAsJsonObject();
 
-        int chapterNumber = data.get(NUMBER_FIELD).getAsInt();
-        String chapterName = data.get(NAME_FIELD).getAsString();
+            int chapterNumber = data.get(NUMBER_FIELD).getAsInt();
+            String chapterName = data.get(NAME_FIELD).getAsString();
 
-        List<String> paragraphs = new ArrayList<>();
+            List<String> paragraphs = new ArrayList<>();
 
-        JsonElement content = data.get(CONTENT_FIELD);
-        if (content.isJsonObject()) {
-            findParagraphsByJsonObject(content, paragraphs);
-        } else {
-            paragraphs = getParagraphsByHtmlString(content);
+            JsonElement content = data.get(CONTENT_FIELD);
+            if (content.isJsonObject()) {
+                findParagraphsByJsonObject(content, paragraphs);
+            } else {
+                paragraphs = getParagraphsByHtmlString(content);
+            }
+            return new RanobeTitle(String.format(TITLE_TEMPLATE, chapterNumber, chapterName), paragraphs);
+        } catch (Exception ex) {
+            printerService.error(ex);
+            errors.add(new ErrorContent(downloadedContent.chapterNum(), ex));
+            return null;
         }
-        return new RanobeTitle(String.format(TITLE_TEMPLATE, chapterNumber, chapterName), paragraphs);
     }
 
     private static List<String> getParagraphsByHtmlString(JsonElement content) {
@@ -71,11 +81,16 @@ public class RanobeLibParser implements Parser {
             JsonObject contentObject = content.getAsJsonObject();
 
             if (contentObject.get(TYPE_FIELD).getAsString().equals(PARAGRAPH_TYPE)) {
-
+                if (contentObject.isEmpty()) {
+                    return;
+                }
                 JsonArray contentWithText = contentObject.get(CONTENT_FIELD).getAsJsonArray();
                 StringBuilder paragraphBuilder = new StringBuilder();
                 for (JsonElement paragraphNode : contentWithText) {
-                   paragraphBuilder.append(paragraphNode.getAsJsonObject().get(TEXT_TYPE).getAsString());
+                    JsonElement jsonElement = paragraphNode.getAsJsonObject().get(TEXT_TYPE);
+                    if (jsonElement != null) {
+                        paragraphBuilder.append(jsonElement.getAsString());
+                    }
                 }
                 paragraphs.add(paragraphBuilder.toString());
             }

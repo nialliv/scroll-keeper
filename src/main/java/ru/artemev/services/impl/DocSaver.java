@@ -8,6 +8,7 @@ import ru.artemev.dto.ErrorContent;
 import ru.artemev.dto.RanobeTitle;
 import ru.artemev.services.PrinterService;
 import ru.artemev.services.Saver;
+import ru.artemev.utils.RegexUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,12 +27,12 @@ public class DocSaver implements Saver {
             ranobeChapter.lines()
                     .forEach(line -> createParagraph(document, line, 12, false, ParagraphAlignment.LEFT));
 
-            String fileName = title.substring(0, Math.min(title.length(), 80)) + ".docx";
+            String fileName = title.substring(0, Math.min(title.length(), 80)).replaceAll("/", "") + ".docx";
             File documentFile = pathToSaveContent.resolve(fileName).toFile();
             document.write(new FileOutputStream(documentFile));
         } catch (Exception ex) {
             printerService.error(ex);
-            errors.add(new ErrorContent(Integer.parseInt(title), ex));
+            errors.add(new ErrorContent(RegexUtils.findDigits(title).getFirst(), ex));
         }
     }
 

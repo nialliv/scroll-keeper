@@ -2,6 +2,7 @@ package ru.artemev.services.downloaders.impl;
 
 import lombok.SneakyThrows;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import ru.artemev.config.HttpConfig;
 import ru.artemev.dto.ContentLink;
@@ -24,7 +25,12 @@ public class HttpDownloader implements Downloader {
         try {
             String htmlBody = HttpConfig.getHttpClient()
                     .execute(new HttpGet(contentLink.url()),
-                            httpResponse -> EntityUtils.toString(httpResponse.getEntity()));
+                            httpResponse -> {
+                                if (httpResponse.getCode() == 200) {
+                                    return EntityUtils.toString(httpResponse.getEntity());
+                                }
+                                throw new HttpException();
+                            });
             return new DownloadedContent(contentLink.chapterNum(), htmlBody);
         } catch (IOException ex) {
             errors.add(new ErrorContent(contentLink.chapterNum(), ex));
